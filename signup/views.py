@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login
 
 # Create your views here.
 #Get
-def index(request):
+def singup(request):
     return render(request,'signup.html')
 
 

@@ -2,9 +2,9 @@
 
 {% block content %}
     <div class="container-sm">
-    <form action="create_user/" method="post">
+    <form action="" method="post">
         {% csrf_token %}
-        <h2>Welcome, Sign Up</h2>
+        <h2>Welcome, Sign In</h2>
         
         <div class="form-floating mb-3">
             <input type="text" class="form-control" id="floatingname" placeholder="Please, write your name" name="name">
@@ -12,24 +12,11 @@
         </div>
 
         <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingname" placeholder="Please, write your name" name="email">
-            <label for="Inputname" >Email</label>
-        </div>
-
-        <div class="form-floating mb-3">
             <input type="password" class="form-control" id="floatingname" placeholder="Please, write your name" name="password1">
             <label for="Inputname" >Password</label>
         </div>
-
-        <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="floatingname" placeholder="Please, write your name" name="password2">
-            <label for="Inputname" >Confirm Password</label>
-        </div>
-        
         <button  class="btn btn-outline-dark">Send</button>
-        
-
+            
     </form>
-    </div>
-{% endblock content %}   
-
+</div>
+{% endblock content %}  

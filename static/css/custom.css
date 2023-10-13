@@ -1,6 +1,9 @@
 .container-fluid a{
-    color:black !important;
+    color:white !important;
 }
-body{
-    background-color: black !important;
+.container-fluid span{
+    color:white !important;
+}
+.navbar-toggler span{
+    color: white !important;
 }
