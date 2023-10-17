@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h2>Update task {{task}}</h2>
+
+<form action="" method="POST">
+    
+    {% csrf_token %}
+    <div class="form-floating mb-3">
+        
+        <input type="text" class="form-control" id="floatingname" name="name" value="{{task.name}}" >
+        <label for="Inputname" >Name of task</label>
+    </div>
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Please, write description for task" name= "description"id="floatingTextarea" value=>{{task.description}}</textarea>
+        <label for="floatingTextarea">Description</label>
+      </div>
+    <button  class="btn btn-outline-dark">Save</button>
+</form>
+
+{% endblock content %}

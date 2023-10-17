@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth import authenticate, login
-from user_work_space_manager.models import RolAssignment,UserProfile
+from django.contrib.auth import authenticate, login, logout
+from user_work_space_manager.models import RolAssignment,UserProfile,WorkSpaces
 # Create your views here.
 
 def index(request):
@@ -12,11 +12,22 @@ def index(request):
         if user_login is not None:
             user_login= UserProfile.objects.get(username = request.POST['name'])
             login(request=request,user=user_login)
-            return redirect('select work space')
+            return redirect('select work space',)
         return HttpResponse('Usuario no authenticado')
 
 
-def select_work_space(request,id):
+def select_work_space(request):
     if request.method == 'GET':
-        user = UserProfile.objects.get(pk = id)
-        return render(request, 'select_work_space.html')
+        list_test = RolAssignment.objects.filter(user = request.user.pk)
+        list_work_space= []
+        for i in list_test:
+            #ws= WorkSpaces.objects.get(pk = i.work_space)
+            list_work_space.append(i.work_space)
+        print(list_work_space)
+        return render(request, 'select_work_space.html',{
+            'works_spaces': list_work_space
+        })
+        
+def close_session(request):
+    logout(request)
+    return redirect('landing')

@@ -3,4 +3,17 @@
 {% block content %}
 
 
+<form action={% url 'home' %} method="post">
+    {% csrf_token %}
+    <h2>Por favor, selecciones elespacio de trabajo</h2>
+    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="work_space">
+        <option selected>Despliegue para seleccionar</option>
+        {% for work_space in works_spaces %}
+        <option value={{work_space.pk}} >{{work_space.name}}</option>
+        {% endfor %}        
+    </select>
+    <button  class="btn btn-outline-dark">ir</button>
+</form>
+
+
 {% endblock content %}  

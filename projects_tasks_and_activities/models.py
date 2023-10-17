@@ -9,7 +9,8 @@ class Project(models.Model):
     state = models.CharField(max_length=15, choices=STATE, default= 'STAND_BY')
     name = models.CharField(max_length=100)
     dead_line = models.DateField()
-    created_at = models.DateTimeField(auto_now_add=True)
+    description = models.CharField(max_length=250)
+    created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     def __str__(self) -> str:
         return self.name
@@ -28,6 +29,7 @@ class Tasks(models.Model):
     in_work_space = models.ForeignKey(WorkSpaces, on_delete=models.CASCADE,related_name='Tasks_WorkSpaces')
     state = models.CharField(max_length=15, choices=STATE, default= 'STAND_BY')
     name = models.CharField(max_length=100)
+    description = models.CharField(max_length=250)
     dead_line = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
@@ -61,3 +63,19 @@ class CommentsActivities(models.Model):
     comment = models.CharField(max_length=250)
     def __str__(self) -> str:
         return self.comment
+    
+
+
+'''    
+class Activities(models.Model):
+    created_by_user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='Activities_Users')
+    belongs_task = models.ForeignKey(Tasks, on_delete= models.CASCADE, related_name='Activities_Task')
+    in_work_space = models.ForeignKey(WorkSpaces, on_delete=models.CASCADE,related_name='Activities_WorkSpaces')
+    state = models.CharField(max_length=15, choices=STATE, default= 'STAND_BY')
+    name = models.CharField(max_length=100)
+    dead_line = models.DateField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self) -> str:
+        return self.name
+'''

@@ -33,16 +33,18 @@ AUTH_USER_MODEL = 'user_work_space_manager.UserProfile'
 
 INSTALLED_APPS = [
     'user_work_space_manager',
+    'landig_and_dashborad',
     'projects_tasks_and_activities',
     'sign_in',
     'signup',
+    'bootstrap5',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrap5',
+    
 ]
 
 MIDDLEWARE = [
@@ -130,3 +132,6 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGIN_URL = 'signin'

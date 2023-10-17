@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{work_space.name}}</h2>
+
+<!--Table of Projects, Task and activities-->
+<table class="table">
+    <thead>
+        <tr>
+        <th scope="col">Daily activities</th>
+        <th scope="col">Assigned</th>
+        <th scope="col">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">Necessary daily activity assigned to a collaborator or lead</th>
+        <td>Larry</td> 
+        <td>pending to complete</td>   
+    </tr>
+    <tr>
+        <th scope="row">Necessary daily activity assigned to a collaborator or lead</th>
+        <td>Mark</td> 
+        <td>pending to complete</td>  
+    </tr>
+    <tr>
+        <th scope="row">Necessary daily activity assigned to a collaborator or lead</th>
+        <td>Jacob</td> 
+        <td>Completed</td>       
+    </tr>
+    </tbody>
+</table>
+</div>
+
+
+<!--Table of Projects, Task and activities-->
+
+
+<!--Table of Projects, Task and activities-->
+<table class="table">
+    <thead>
+        <tr>
+        <th scope="col">Projects</th>
+        <th scope="col">Tasks</th>
+        <th scope="col">Activities</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">Test Project 1</th>
+        <td>2/6</td> 
+        <td>12/26</td>   
+    </tr>
+    <tr>
+        <th scope="row">Test Project 2</th>
+        <td>1/3</td> 
+        <td>8/32</td> 
+    </tr>
+    <tr>
+        <th scope="row">Test Project 3</th>
+        <td>1/8</td> 
+        <td>2/34</td>       
+    </tr>
+    </tbody>
+</table>
+</div>
+
+<!--Table of Projects, Task and activities-->
+<!--Table of persons of team-->
+<div class'container'>
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Area Lead</th>
+            <th scope="col">collaborators</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row" rowspan=2>Lider de area 1</th>
+            <td>Mark</td>   
+        </tr>
+        <tr>
+            <td>Jacob</td>   
+        </tr>
+        <tr>
+            <th scope="row">Sin lider asignado</th>
+            <td colspan="2">Larry </td>       
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!--Table of persons of team-->
+<!--
+  {% for user, rol in team %}
+    
+  {% if rol == '' %}
+      
+  {% endif %}
+      
+  {{user}}
+  {{rol}}
+  
+{% endfor %}
+-->
+{% endblock content %}

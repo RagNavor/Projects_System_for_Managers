@@ -21,12 +21,9 @@ class RolAssignment(models.Model):
         return f'El usuario {self.user} tiene el en el work space {self.work_space} tiene el rol de {self.rol}'
     
 class UserProfile(AbstractUser):
-    #users_profile = models.OneToOneField('self', on_delete=models.CASCADE)
+    
     work_space: models.ManyToManyField(WorkSpaces, through=RolAssignment,blank=True,null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    
-    #REQUIRED_FIELDS = ['email']
-    #USERNAME_FIELD = 'username'
     def __str__(self) -> str:
         return self.username
