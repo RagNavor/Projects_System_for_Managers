@@ -35,4 +35,4 @@ def create_work_space(request):
             work_space = new_work_space,
             rol = 'CREATOR_WORK_SPACE'
         )
-        return HttpResponse(f'Se creo con exito  {new_work_space} {role_assignment}')
+        return redirect('home')

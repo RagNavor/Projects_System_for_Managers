@@ -25,11 +25,11 @@
           <!--Button for mobile-->
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-            {% if user.is_authenticated %}  
-              <a class="nav-link active" aria-current="page" href={% url 'select work space' %}>Home</a>
+            {% if user.is_authenticated and work_space_selected != False%}  
+              <a class="nav-link active" aria-current="page" href={% url 'home' %}>Home</a>
               <a class="nav-link" href={% url 'projects' %}>Projects</a>
               <a class="nav-link" href={% url 'tasks' %}>Tasks</a>
-              <a class="nav-link" href="#">Team</a>
+              <a class="nav-link" href={% url 'team' %}>Team</a>
               <a class="nav-link" href={% url 'close_session' %}>Logout</a>
             </div>
             

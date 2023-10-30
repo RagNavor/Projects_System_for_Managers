@@ -64,13 +64,11 @@ class CommentsActivities(models.Model):
     def __str__(self) -> str:
         return self.comment
     
-
-
-'''    
-class Activities(models.Model):
+'''
+class DailyActivities(models.Model):
     created_by_user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='Activities_Users')
-    belongs_task = models.ForeignKey(Tasks, on_delete= models.CASCADE, related_name='Activities_Task')
-    in_work_space = models.ForeignKey(WorkSpaces, on_delete=models.CASCADE,related_name='Activities_WorkSpaces')
+    taked_for = models.ForeignKey(UserProfile, on_delete= models.CASCADE, related_name='taked_for_user')
+    in_work_space = models.ForeignKey(WorkSpaces, on_delete=models.CASCADE,related_name='daily_activities_workspaces')
     state = models.CharField(max_length=15, choices=STATE, default= 'STAND_BY')
     name = models.CharField(max_length=100)
     dead_line = models.DateField()

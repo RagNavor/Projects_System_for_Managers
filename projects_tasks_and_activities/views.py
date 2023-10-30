@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from user_work_space_manager.models import UserProfile, WorkSpaces, RolAssignment
-from .models import Project, Tasks
+from .models import Project, Tasks, Activities
 from datetime import datetime
 
 # Create your views here.
@@ -82,6 +82,16 @@ def create_tasks(request):
     new_task.save()
     return redirect('tasks')
 
+def detail_task(request,id):
+    now = str(datetime.now())
+    task = Tasks.objects.get(pk=id)
+    activities =Activities.objects.filter(belongs_task= task)
+    return render(request,'task_detail.html',{
+        'task':task,
+        'activities':activities,
+        'now':now
+    })
+
 def delete_task(request,id):
     task = Tasks.objects.get(pk=id).delete()
     return redirect('tasks')
@@ -96,4 +106,17 @@ def update_task(request,id):
     task.description = request.POST['description']
     task.save()
     return redirect('tasks')
+
+def create_activity(request,id):
+    user = UserProfile.objects.get(pk=request.user.pk)
+    workspace = WorkSpaces.objects.get(pk=request.session['selected_workspace'])
+    task = Tasks.objects.get(pk = id)
+    new_activity = Activities.objects.create(
+        created_by_user=user,
+        belongs_task= task,
+        in_work_space= workspace,
+        name=request.POST['name'],
+        dead_line=request.POST['dead_line'],
+    )
+    return redirect('detail_task', id=task.pk)
     

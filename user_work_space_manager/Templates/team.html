@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class='container-sm'>
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Area Lead</th>
+            <th scope="col">Collaborators</th>
+            <th scope="col">Assign leader</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for collaborator_without_area_lead in collaborators_without_area_lead %}
+            <tr>
+                <form action="assign_leader/" method="post">
+                    {% csrf_token %} 
+                <th scope="row" >No leader</th>
+                <td>
+                    <input type="hidden" name="collaborator" value={{collaborator_without_area_lead.collaborator}}>{{collaborator_without_area_lead.collaborator}}</td>
+                <td><select class="form-select " aria-label=".form-select-lg example" name="lead">
+                    <option selected>Despliegue para seleccionar lider de area</option>
+                    
+                    {% for lead, c in teams %}
+                    <option value={{lead.user.pk}} >{{lead.user}}</option>
+                    {% endfor %}                           
+                </select> 
+            
+                <button  class="btn btn-outline-dark">Assing</button>
+            <tr>
+            </form>
+                {% endfor %}    
+        
+       
+            
+        </tbody>
+    </table>
+</div>
+
+<div class='container-sm'>
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Area Lead</th>
+            <th scope="col">Collaborators</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lead, collaborators in teams %}
+        <tr>
+            {% if collaborators|length != 0 %}
+            
+            <th scope="row" rowspan={{ collaborators|length|add:1  }}>{{lead.user}}</th>
+            {% else %} 
+            <th scope="row" rowspan=2>{{lead.user}}</th>
+            {% endif %}
+           
+            
+            </tr>  
+            {% if collaborators|length == 0 %}
+            <td>Sin colaboradorador asignado</td>
+            {% endif %}
+            {% for collaboratorN in collaborators %}
+            <tr>
+                
+                <td>{{collaboratorN.collaborator}}</td>
+            </tr>   
+            {% endfor %}
+        
+        {% endfor %}
+        
+        
+        
+            
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<form action="create_user/" method="post">
+    {% csrf_token %} 
+    <h3>Create user</h3>  
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingname" placeholder="Please, write your name" name="name">
+        <label for="Inputname" >Name</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="floatingname" placeholder="Please, write your name" name="email">
+        <label for="Inputname" >Email</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="floatingname" placeholder="Please, write your name" name="password1">
+        <label for="Inputname" >Password</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="floatingname" placeholder="Please, write your name" name="password2">
+        <label for="Inputname" >Confirm Password</label>
+    </div>
+    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="rol">
+        <option selected>Despliegue para seleccionar el rol</option>
+        
+        <option value="AREA_LEAD" >Area lead</option>
+        <option value="COLLABORATOR" >collaborator</option>
+               
+    </select>
+    
+    <button  class="btn btn-outline-dark">Create</button>
+    
+
+</form>
+
+{% endblock content %}

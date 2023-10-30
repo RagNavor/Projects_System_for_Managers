@@ -3,6 +3,32 @@
 
 {% block content %}
 <h1>Tasks in {{workspace}}</h1>
+<!--Section resume task group by project-->
+
+<div class = "container text-center">
+  <h2>Task group by project</h2>
+  <div class="row">
+{% for project, tasks in task_group_by_projects %} 
+    <div class="col">
+      <div class="card">
+        <h5 class="card-header">{{project}}</h5>
+        
+            {% for task in tasks %}
+            <div class="card-body">
+            <a href={% url 'detail_task' id=task.pk %}><h5 class="card-title">{{task}}</h5></a>
+            <p class="card-text"><b>Description: </b>{{task.description}}</p>
+            <a href={% url 'update_task' id=task.pk %} class="btn btn-primary">Modify Task</a>
+            <a href={% url 'delete_task' id=task.pk %}><button  class="btn btn-danger">Delete</button></a>
+          </div>
+          {% endfor %}
+        
+      </div>
+    </div> 
+{% endfor %}
+  </div>
+</div>
+<!--Section resume task group by project-->
+
 <form action={% url 'create_task' %} method="post">
     {% csrf_token %}
     <div class="form-floating mb-3">
@@ -31,18 +57,7 @@
     <button  class="btn btn-outline-success">Create</button>
 </form>
 
-{% for project, tasks in task_group_by_projects %} 
-<div class="card">
-    <h5 class="card-header">{{project}}</h5>
-    <div class="card-body">
-        {% for task in tasks %}
-        <h5 class="card-title">{{task}}</h5>
-        <p class="card-text">{{task.description}}</p>
-        <a href={% url 'update_task' id=task.pk %} class="btn btn-primary">Modify Task</a>
-        <a href={% url 'delete_task' id=task.pk %}><button  class="btn btn-danger">Delete</button></a>
-      {% endfor %}
-    </div>
-  </div>
-  {% endfor %}
+
+
 {% endblock content %}
     

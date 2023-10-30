@@ -21,9 +21,13 @@ class RolAssignment(models.Model):
         return f'El usuario {self.user} tiene el en el work space {self.work_space} tiene el rol de {self.rol}'
     
 class UserProfile(AbstractUser):
-    
     work_space: models.ManyToManyField(WorkSpaces, through=RolAssignment,blank=True,null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     def __str__(self) -> str:
         return self.username
+    
+class Teams(models.Model):
+    area_lead= models.ForeignKey(UserProfile, on_delete=models.CASCADE,null=True, blank=True, related_name='area_lead_collaborator')
+    collaborator = models.ForeignKey(UserProfile,on_delete=models.CASCADE,null=True, blank=True, related_name='collaborator_area_lead')
+    work_space= models.ForeignKey(WorkSpaces, on_delete=models.CASCADE)

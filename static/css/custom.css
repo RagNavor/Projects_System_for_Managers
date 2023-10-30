@@ -7,3 +7,6 @@
 .navbar-toggler span{
     color: white !important;
 }
+.error-message{
+    color: red !important;
+}

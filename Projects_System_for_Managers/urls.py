@@ -22,5 +22,6 @@ urlpatterns = [
     path('', include('landig_and_dashborad.urls'), name= 'home'),
     path('signup/', include('signup.urls'),name= 'signup'),
     path('signin/', include('sign_in.urls'),name= 'signin'),
-    path('projects_task_activities/', include('projects_tasks_and_activities.urls'),name= 'projects_task_activities')
+    path('projects_task_activities/', include('projects_tasks_and_activities.urls'),name= 'projects_task_activities'),
+    path('team/', include('user_work_space_manager.urls'),name= 'team')
 ]

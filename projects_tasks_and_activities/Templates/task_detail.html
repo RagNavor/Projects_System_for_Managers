@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h1>{{task}}</h1>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Activity</th>
+        <th scope="col">DeadLine</th>
+        <th scope="col">State</th>
+        <th scope="col">Taked for</th>
+      </tr>
+    </thead>
+    <tbody>
+{% for activity in activities %}
+
+      <tr>
+        <th scope="row">{{activity}}</th>
+        <td>{{activity.dead_line}}</td>
+        <td>{{activity.state}}</td>
+        <td>@mdo</td>
+      </tr>
+      <p></p>
+
+    {% endfor %}
+    </tbody>
+  </table>
+
+<form action={% url "create_activity" id=task.pk %} method="POST">
+    
+    {% csrf_token %}
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingname" placeholder="Please, write name of activity" name="name">
+        <label for="Inputname" >Name</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="date" class="form-control" id="floatingdate"  name="dead_line" min={{now}}>
+        <label for="floatingdate" >Dead Line</label>
+    </div>
+    <button  class="btn btn-outline-dark">Create</button>
+</form>
+
+
+
+{% endblock content %}
